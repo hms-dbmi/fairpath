@@ -24,13 +24,13 @@ Contrastive Learning Enhances Fairness in Pathology Artificial Intelligence Syst
 ## Data Preparation
 
 * datasetpath
-![image](https://hackmd.io/_uploads/HJZdLyIlkx.png)
+![](https://hackmd.io/_uploads/HJZdLyIlkx.png)
 
 * patchesdirectory
-![image](https://hackmd.io/_uploads/SJKqa0rlye.png)
+![](https://hackmd.io/_uploads/SJKqa0rlye.png)
 
 * patchesinformation
-![image](https://hackmd.io/_uploads/Sk8RS1IxJg.png)
+![](https://hackmd.io/_uploads/Sk8RS1IxJg.png)
 
 
 
