@@ -4,7 +4,7 @@ Contrastive Learning Enhances Fairness in Pathology Artificial Intelligence Syst
 
 ![image](https://ibb.co/tJ5h02f)
 
-![](https://i.imgur.com/qm4OLtI.png)
+![](https://hackmd.io/_uploads/HJZdLyIlkx.png)
 
 ## Requirements
     * docker version: nvcr.io/nvidia/pytorch:22.03-py3
