@@ -2,7 +2,7 @@
 Contrastive Learning Enhances Fairness in Pathology Artificial Intelligence Systems: A Pan-Cancer Multi-Institutional Study
 
 
-![image](https://hackmd.io/_uploads/rkaz_kIeJg.png)
+![image](https://ibb.co/tJ5h02f)
 
 
 ## Requirements
