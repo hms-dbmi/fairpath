@@ -1,10 +1,7 @@
 # FairPath
 Contrastive Learning Enhances Fairness in Pathology Artificial Intelligence Systems: A Pan-Cancer Multi-Institutional Study
 
-
-![image](https://ibb.co/tJ5h02f)
-
-![](https://hackmd.io/_uploads/HJZdLyIlkx.png)
+![image](https://i.imgur.com/sFEP6a4.png)
 
 ## Requirements
     * docker version: nvcr.io/nvidia/pytorch:22.03-py3
@@ -25,13 +22,12 @@ Contrastive Learning Enhances Fairness in Pathology Artificial Intelligence Syst
 ## Data Preparation
 
 * datasetpath
-![](https://hackmd.io/_uploads/HJZdLyIlkx.png)
-
+![](https://i.imgur.com/hMXp7HQ.png)
 * patchesdirectory
-![](https://hackmd.io/_uploads/SJKqa0rlye.png)
+![](https://i.imgur.com/Qe9DGsU.png)
 
 * patchesinformation
-![](https://hackmd.io/_uploads/Sk8RS1IxJg.png)
+![](https://i.imgur.com/SW13jlE.png)
 
 
 
