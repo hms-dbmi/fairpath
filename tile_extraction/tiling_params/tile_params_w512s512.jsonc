@@ -1,0 +1,43 @@
+{
+    //#### Magnification #############################################
+    "IMG_MAG_LEVEL": 20, // Output magnification of the tiles
+    "SEARCH_MAG_LEVEL": 5, // Magnification used for tile selection 
+    "BLOB_MAG_LEVEL": 5,
+    //##### Number of Patches   #####################################
+    "numPatches": 500,
+    //#### Thresholding     #########################################
+    // patch size
+    "xPatch": 512,
+    "yPatch": 512,
+    // patch stride
+    "xStride": 512,
+    "yStride": 512,
+    // params for optical density thresholds
+    //  (see OpticalDensityThreshold)
+    "OD_use_Otsu": true, // Use Otsu's method to determine beta for OpticalDensityThreshold
+    "OD_Io": 225, // (should not be lower than the birghtest tissue intensity)
+    "OD_beta": 0.00,
+    //Hue thresholds (in degree [0~360])
+    "hueLowerBound": 70.0,
+    "hueUpperBound": 230.0,
+    // Saturation thresholds (range [0,1])
+    "sat_use_Otsu": true, // Use Otsu's method to determine beta for OpticalDensityThreshold
+    "saturationLowerBound": 0.2,
+    // thresholds for black areas 
+    "BlackThresold": 10,
+    "BlackAreaThreshold": 0.01,
+    // LoG filter for tissue strcuture detection
+    "LOGsigma": 3, // LoG kernel width,
+    "LOGLowerBound": 0.000, // LoG threshold (set to 0 to disable)
+    "area_threhold": 0.05, // threhsold for ratio of valid areas ( valid OD, H, S, black & LoG criteria),
+    "useCellScorer": true, // Use Cell Scorer or not
+    "CellScorer": "CellularityScorer", // Cell Scorer to use
+    "useBlobDetection": false, // Use Blob Detection or not (Blob Detection would result in significantly longer processing time)
+    "blobsNumLowerBound": 5, // Blob detection threshold params,
+    "blobThreshold": 0.2, // Blob threshold (0.3 will exclude some slightly blurred nuecli, maybe set to lower vlaue),
+    "blobNumSigma": 5,
+    "blobsRadiusLowerBound": 0,
+    "blobsRadiusUpperBound": 5,
+    "top_Q": 0.95, // Ratio of valid tiles to keep (in case there are some artifactsa)
+    "BLOB_ONLY_IN_VALID": false // only do blob detection of filtered image (not recommanded)
+}
