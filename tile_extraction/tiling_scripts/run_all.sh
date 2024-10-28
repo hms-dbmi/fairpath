@@ -1,6 +1,0 @@
-sbatch step1_tile_extraction/tiling_scripts/tiling_script_DFCI_breast.sh
-sbatch step1_tile_extraction/tiling_scripts/tiling_script_DFCI_brain.sh
-sbatch step1_tile_extraction/tiling_scripts/tiling_script_DFCI_colorectal.sh
-sbatch step1_tile_extraction/tiling_scripts/tiling_script_DFCI_renal.sh
-sbatch step1_tile_extraction/tiling_scripts/tiling_script_DFCI_lung.sh
-
