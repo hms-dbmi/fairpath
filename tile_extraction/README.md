@@ -1,4 +1,4 @@
-## Step 1: Tile Extraction
+# Tile Extraction
 
 **Dependencies:**
 
