@@ -15,7 +15,7 @@ Contrastive Learning Enhances Fairness in Pathology Artificial Intelligence Syst
     * warmup_scheduler
 
 ## Whole Slide Images Tiling
-We extracted 512-by-512 tiles from WSIs at 20X magnification. Please see [this README](tile_extraction/README.md) for 
+We extracted 512-by-512 tiles from WSIs at 20X magnification. Please see [this README](tile_extraction/README.md) for details.
 
 
 ## Data Preparation
