@@ -1,7 +1,9 @@
-# FairPath
-Contrastive Learning Enhances Fairness in Pathology Artificial Intelligence Systems: A Pan-Cancer Multi-Institutional Study
+# FairPath - Contrastive Learning Enhances Fairness in Pathology Artificial Intelligence Systems: A Pan-Cancer Multi-Institutional Study
+Shih-Yen Lin, Pei-Chen Tsai, Fang-Yi Su, Chun-Yen Chen, Fuchen Li, Junhan Zhao, Yuk Yeung Ho, Tsung-Lu Michael Lee, Elizabeth Healey, Po-Jen Lin, Thomas Roetzer-Pejrimovsky, Lynette Sholl, Deborah Dillon, Nancy U. Lin, David Meredith, Keith L. Ligon, Ying-Chun Lo, Nipon Chaisuriya, David J. Cook, Adelheid Woehrer,  Jeffrey Meyerhardt, Shuji Ogino, MacLean P. Nasrallah, Jeffrey A. Golden, Sabina Signoretti, Jung-Hsien Chiang, Kun-Hsing Yu
 
 ![image](https://i.imgur.com/sFEP6a4.png)
+
+Resource from google drive : https://drive.google.com/drive/u/1/folders/12og_0dCEj6ZJTvQ3oqhFJSRJ-GcbjpuE
 
 ## Requirements
     * docker version: nvcr.io/nvidia/pytorch:22.03-py3
@@ -21,12 +23,16 @@ We extracted 512-by-512 tiles from WSIs at 20X magnification. Please see [this R
 ## Data Preparation
 
 * datasetpath
-![](https://i.imgur.com/hMXp7HQ.png)
+    * fairpath real data pkl file : https://drive.google.com/drive/u/1/folders/1VGlj06b9UQgdVxcakhoTvYhy0zitQF1g
+![image](https://i.imgur.com/hMXp7HQ.png)
+
 * patchesdirectory
-![](https://i.imgur.com/Qe9DGsU.png)
+    * fairpath example of data format : https://drive.google.com/drive/u/1/folders/1yFTQ8Vc9VqFXRy-oCDrBgafeYDoSQ-3m
+![image](https://i.imgur.com/Qe9DGsU.png)
 
 * patchesinformation
-![](https://i.imgur.com/SW13jlE.png)
+    * fairpath real patches information : https://drive.google.com/drive/u/1/folders/1XQF2zcTr5zwMvWza9w1C0rC_V_FEY1NY
+![image](https://i.imgur.com/SW13jlE.png)
 
 
 
