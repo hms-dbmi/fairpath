@@ -23,17 +23,16 @@ We extracted 512-by-512 tiles from WSIs at 20X magnification. Please see [this R
 ## Data Preparation
 
 * datasetpath
-    * fairpath real data pkl file : https://drive.google.com/drive/u/1/folders/1VGlj06b9UQgdVxcakhoTvYhy0zitQF1g
+    * fairpath pkl file : https://drive.google.com/drive/u/1/folders/1VGlj06b9UQgdVxcakhoTvYhy0zitQF1g
 ![image](https://i.imgur.com/hMXp7HQ.png)
 
 * patchesdirectory
-    * fairpath example of data format : https://drive.google.com/drive/u/1/folders/1yFTQ8Vc9VqFXRy-oCDrBgafeYDoSQ-3m
+    * fairpath example of 33_CHOL : https://drive.google.com/drive/u/1/folders/1yFTQ8Vc9VqFXRy-oCDrBgafeYDoSQ-3m
 ![image](https://i.imgur.com/Qe9DGsU.png)
 
 * patchesinformation
-    * fairpath real patches information : https://drive.google.com/drive/u/1/folders/1XQF2zcTr5zwMvWza9w1C0rC_V_FEY1NY
+    * fairpath patches information : https://drive.google.com/drive/u/1/folders/1XQF2zcTr5zwMvWza9w1C0rC_V_FEY1NY
 ![image](https://i.imgur.com/SW13jlE.png)
-
 
 
 
@@ -52,8 +51,8 @@ python mainRepresentationLearningNonnorm.py
 			'path to img folder (sensitive_attibute0 Class1)' \
 			'path to img folder (sensitive_attibute1 Class0)' \
 			'path to img folder (sensitive_attibute1 Class1)' \
-	--patchesinformation 'path img_information.pkl' \
-                            'path img_information.pkl'
+	--patchesinformation 'path img_information.pkl class0' \
+                            'path img_information.pkl class1'
 	--model_save_directory 'save weight path' \
 	--epoch 200 --batch_size 12 --step 480 
     --wandb --wandb_projectname project_name 
@@ -73,6 +72,51 @@ python mainFinetuneClassificationTask.py
 			'path to img folder (sensitive_attibute1 Class1)' \
 	--patchesinformation 'path img_information.pkl' \
                             'path img_information.pkl'
+	--model_save_directory 'save weight path' \
+    --pretraineddirectory 'path to weight from stage 1' \
+    --epoch 50 --batch_size 4 
+    --wandb --wandb_projectname project name 
+    --pickType k-step --specificInnerloop 1 --multiply 3 
+    --learning_rate 5e-5
+   
+``` 
+
+
+## Tutorial
+### example for gender in tumor detection 33_CHOL (frozen section)
+* Stage 1
+    
+```
+python mainRepresentationLearningNonnorm.py 
+    --datasetpath 'female 33_CHOL 40 Frozen tumor0.pkl' \
+	          'female 33_CHOL 40 Frozen tumor1.pkl' \
+	          'male 33_CHOL 40 Frozen tumor0.pkl' \
+	          'male 33_CHOL 40 Frozen tumor1.pkl' \
+    --patchesdirectory '33_CHOL' \
+			'33_CHOL' \
+			'33_CHOL' \
+			'33_CHOL' \
+	--patchesinformation 'img_information_20x.pkl' \
+                            'img_information_20x.pkl'
+	--model_save_directory 'save weight path' \
+	--epoch 200 --batch_size 12 --step 480 
+    --wandb --wandb_projectname project_name 
+    --pickType k-step --multiply 24 --specificInnerloop 2 
+    --learning_rate 5e-3
+```
+* Stage 2
+```
+python mainFinetuneClassificationTask.py 
+    --datasetpath 'female 33_CHOL 40 Frozen tumor0.pkl' \
+	          'female 33_CHOL 40 Frozen tumor1.pkl' \
+	          'male 33_CHOL 40 Frozen tumor0.pkl' \
+	          'male 33_CHOL 40 Frozen tumor1.pkl' \
+    --patchesdirectory '33_CHOL' \
+			'33_CHOL' \
+			'33_CHOL' \
+			'33_CHOL' \
+	--patchesinformation 'img_information_20x.pkl' \
+                            'img_information_20x.pkl'
 	--model_save_directory 'save weight path' \
     --pretraineddirectory 'path to weight from stage 1' \
     --epoch 50 --batch_size 4 
