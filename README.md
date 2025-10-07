@@ -6,7 +6,7 @@ Shih-Yen Lin<sup>†</sup>, Pei-Chen Tsai<sup>†</sup>, Fang-Yi Su<sup>†</sup
 You can find the resource from google drive : https://drive.google.com/drive/u/1/folders/12og_0dCEj6ZJTvQ3oqhFJSRJ-GcbjpuE
 
 
-![image](https://hackmd.io/_uploads/HypBmtfagl.png)
+![image](https://i.ibb.co/gL70h1Tp/2025-10-07-201353.jpg)
 
 
 
