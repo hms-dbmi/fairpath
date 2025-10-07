@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 
 class ContrastiveLoss(nn.Module):
     def __init__(self, temperature=0.07, base_temperature=0.07):
@@ -43,16 +44,7 @@ class ContrastiveLoss(nn.Module):
             logits = anchor_dot_contrast - logits_max.detach()
 
         elif sim_method == 'cosineSimilarity' or sim_method == 'cosineDistance':
-            ## 這邊因為 nn.CosineSimilarity 計算的關係，要由
-            ## [[a, b, c]]
-            ## 展開到
-            ## [[a, b, c], 
-            ##  [a, b, c],
-            ##  [a, b, c]]
-            ##  contrast_feature 要透過 transpose 反轉到
-            ## [[a, a, a],
-            ##  [b, b, b],
-            ##  [c, c, c]]
+           
             anchor_feature_expand = anchor_feature.repeat(anchor_count*contrast_count, 1, 1)
             contrast_feature_expand = torch.transpose(contrast_feature.repeat(anchor_count*contrast_count, 1, 1), 0, 1)
             cos = nn.CosineSimilarity(dim = 2, eps = 1e-10)
@@ -63,45 +55,32 @@ class ContrastiveLoss(nn.Module):
             logits = anchor_contrast
         else:
             raise ValueError(f'Similarity Method:{sim_method} can\'t be found.')
-        ###
-        ## logits_mask 指 自己以外的 mask
-        ## mask        指 自己及不同分類以外的 mask (自己除外同類的 mask)
-        ##
-        ## logits <- 全部的 sim
-        ## exp_logits <- Numerator
-        ## torch.log(exp_logits.sum(1, keepdim=True)) <- Denominator
-        ##
-        ## log_prob 是因為 log ( [exp(sim(i, j)/tau) / sum(all exp(sim) except itself)] )
-        ## -> log(a/b) = log a - log b
-        ## -> log( exp(sim(i, j)/tau) ) - log(sum(all exp(sim) except itself))
-        ## -> (sim(i, j)/tau) - log(sum(all exp(sim) except itself))
-        ## mean_log_prob_pos 除了自己之外的只要有值都會計算
-        ###
-        mask = mask.repeat(anchor_count, contrast_count)                                        
-        logits_mask = torch.logical_xor(torch.eye(batch_size*anchor_count, batch_size*anchor_count), torch.tensor(1)).float().to(device)      
-        mask = mask * logits_mask 
+   
+        mask = mask.repeat(anchor_count, contrast_count)
+        logits_mask = torch.logical_xor(torch.eye(batch_size*anchor_count, batch_size*anchor_count), torch.tensor(1)).float().to(device)
+        mask = mask * logits_mask
 
-        if method == 'SupCon':                                                                                 
-            # compute log_prob                                                                              
-            exp_logits = torch.exp(logits) * logits_mask                 
+        if method == 'SupCon':
+            # compute log_prob
+            exp_logits = torch.exp(logits) * logits_mask
             # compute mean of log-likelihood over positive
-            log_prob = logits - torch.log(exp_logits.sum(1, keepdim=True))                                                  
+            log_prob = logits - torch.log(exp_logits.sum(1, keepdim=True))
             mean_log_prob_pos = (mask * log_prob).sum(1) / mask.sum(1)
             # loss
             loss = - (self.temperature / self.base_temperature) * mean_log_prob_pos
             loss = loss.view(anchor_count, batch_size).mean()
 
-        elif method == 'FairCon':                                                      
+        elif method == 'FairCon':
             if sensitive == None:
                 raise ValueError('FairCon: no sensitive labels input.')
             sensitive = sensitive.reshape(-1, 1)
             mask = (torch.ne(sensitive, sensitive.T)*torch.eq(labels, labels.T)).float().to(device)
-            mask = mask.repeat(anchor_count, contrast_count)     
-            mask = mask * logits_mask                                
+            mask = mask.repeat(anchor_count, contrast_count)
+            mask = mask * logits_mask
             numerator = (torch.exp(logits)*mask).sum(dim = 1, keepdim = True)
             # In denominator, excluding different sensi and different label
             denominator_mask = (~(torch.ne(sensitive, sensitive.T)*torch.ne(labels, labels.T))).float().to(device)
-            denominator_mask = denominator_mask.repeat(anchor_count, contrast_count)                                        
+            denominator_mask = denominator_mask.repeat(anchor_count, contrast_count)
             denominator_mask = denominator_mask*logits_mask
             denominator = (torch.exp(logits)*denominator_mask).sum(dim = 1, keepdim = True)
             log_prob_pos = torch.div(numerator, denominator)
@@ -109,9 +88,21 @@ class ContrastiveLoss(nn.Module):
             loss = - (self.temperature / self.base_temperature) * mean_log_prob_pos
             loss = loss.view(anchor_count, batch_size).mean()
 
-        else:                                                                                               
-            raise ValueError(f'Method:{method} can\'t be found.')                                       
+        else:
+            raise ValueError(f'Method:{method} can\'t be found.')
 
-        
+
 
         return loss
+
+
+class WeightedBCELoss(nn.Module):
+    def __init__(self, pos_weight):
+        super(WeightedBCELoss, self).__init__()
+        self.pos_weight = pos_weight
+
+    def forward(self, inputs, targets):
+        weights = targets * self.pos_weight + (1 - targets)
+        bce_loss = F.binary_cross_entropy(inputs, targets, reduction='none')
+        weighted_bce_loss = weights * bce_loss
+        return weighted_bce_loss.mean()
