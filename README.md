@@ -1,9 +1,14 @@
-# FairPath - Contrastive Learning Enhances Fairness in Pathology Artificial Intelligence Systems: A Pan-Cancer Multi-Institutional Study
-Shih-Yen Lin<sup>†</sup>, Pei-Chen Tsai<sup>†</sup>, Fang-Yi Su<sup>†</sup>, Chun-Yen Chen, Fuchen Li, Junhan Zhao, Yuk Yeung Ho, Tsung-Lu Michael Lee, Elizabeth Healey, Po-Jen Lin, Thomas Roetzer-Pejrimovsky, Lynette Sholl, Deborah Dillon, Nancy U. Lin, David Meredith, Keith L. Ligon, Ying-Chun Lo, Nipon Chaisuriya, David J. Cook, Adelheid Woehrer,  Jeffrey Meyerhardt, Shuji Ogino, MacLean P. Nasrallah, Jeffrey A. Golden, Sabina Signoretti, Jung-Hsien Chiang, Kun-Hsing Yu
+# Contrastive Learning Enhances Fairness in Pathology Artificial Intelligence Systems
 
-![image](https://i.imgur.com/sFEP6a4.png)
+Shih-Yen Lin<sup>†</sup>, Pei-Chen Tsai<sup>†</sup>, Fang-Yi Su<sup>†</sup>, Chun-Yen Chen, Fuchen Li, Junhan Zhao, Yuk Yeung Ho, Tsung-Lu Michael Lee, Elizabeth Healey, Po-Jen Lin, Ting-Wan Kao, Dmytro Vremenko, Thomas Roetzer-Pejrimovsky, Lynette Sholl, Deborah Dillon, Nancy U. Lin, David Meredith, Keith L. Ligon, Ying-Chun Lo, Nipon Chaisuriya, David J. Cook, Adelheid Woehrer, Jeffrey Meyerhardt, Shuji Ogino, MacLean P. Nasrallah, Jeffrey A. Golden, Sabina Signoretti, Jung-Hsien Chiang, Kun-Hsing Yu
 
-Resource from google drive : https://drive.google.com/drive/u/1/folders/12og_0dCEj6ZJTvQ3oqhFJSRJ-GcbjpuE
+
+You can find the resource from google drive : https://drive.google.com/drive/u/1/folders/12og_0dCEj6ZJTvQ3oqhFJSRJ-GcbjpuE
+
+
+![image](https://hackmd.io/_uploads/HypBmtfagl.png)
+
+
 
 ## Requirements
     * docker version: nvcr.io/nvidia/pytorch:22.03-py3
@@ -17,22 +22,24 @@ Resource from google drive : https://drive.google.com/drive/u/1/folders/12og_0dC
     * warmup_scheduler
 
 ## Whole Slide Images Tiling
-We extracted 512-by-512 tiles from WSIs at 20X magnification. Please see [this README](tile_extraction/README.md) for details.
+* 20x
+* 512*512
 
 
 ## Data Preparation
 
 * datasetpath
-    * fairpath pkl file : https://drive.google.com/drive/u/1/folders/1VGlj06b9UQgdVxcakhoTvYhy0zitQF1g
+    * fairpath real data pkl file : https://drive.google.com/drive/u/1/folders/1VGlj06b9UQgdVxcakhoTvYhy0zitQF1g
 ![image](https://i.imgur.com/hMXp7HQ.png)
 
 * patchesdirectory
-    * fairpath example of 33_CHOL : https://drive.google.com/drive/u/1/folders/1yFTQ8Vc9VqFXRy-oCDrBgafeYDoSQ-3m
+    * fairpath example of data format : https://drive.google.com/drive/u/1/folders/1yFTQ8Vc9VqFXRy-oCDrBgafeYDoSQ-3m
 ![image](https://i.imgur.com/Qe9DGsU.png)
 
 * patchesinformation
-    * fairpath patches information : https://drive.google.com/drive/u/1/folders/1XQF2zcTr5zwMvWza9w1C0rC_V_FEY1NY
+    * fairpath real patches information : https://drive.google.com/drive/u/1/folders/1XQF2zcTr5zwMvWza9w1C0rC_V_FEY1NY
 ![image](https://i.imgur.com/SW13jlE.png)
+
 
 
 
