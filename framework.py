@@ -12,15 +12,15 @@ def parser_setting():
     parser = argparse.ArgumentParser(description = 'Classification.')
 
     ##
-    parser.add_argument('--datasetpath', type = str, nargs = '+', default = ['/home/yen/CancerFairness/Cancer/dataset/white BRCA v0 40 Frozen Positive.pkl'], help = "set datasets file path.")
+    parser.add_argument('--datasetpath', type = str, nargs = '+', default = ['/home/CancerFairness/Cancer/dataset/white BRCA v0 40 Frozen Positive.pkl'], help = "set datasets file path.")
     parser.add_argument('--projectname', type = str, default = None, help = "set project name.")
-    parser.add_argument('--patchesdirectory', type = str, nargs = '+', default = ['/home/yen/nas/TCGA/Patches/1_BRCA/'], help = "set patches path.")
-    parser.add_argument('--patchesinformation', type = str, nargs = '+', default = ['/home/yen/CancerFairness/Statistics/01_BRCA/img_information.pkl'])
+    parser.add_argument('--patchesdirectory', type = str, nargs = '+', default = ['/home/TCGA/Patches/1_BRCA/'], help = "set patches path.")
+    parser.add_argument('--patchesinformation', type = str, nargs = '+', default = ['/home/CancerFairness/Statistics/01_BRCA/img_information.pkl'])
 
     parser.add_argument('--testpath', type = str, nargs = '+', default = [], help = "set test datasets file path.")
     parser.add_argument('--testdirectory', type = str, nargs = '+', default = [], help = "set test patches path.")
 
-    parser.add_argument('--model_save_directory', type = str, default = '/home/yen/CancerFairness/Cancer/01_BRCA/weight/')
+    parser.add_argument('--model_save_directory', type = str, default = '/home/CancerFairness/Cancer/01_BRCA/weight/')
     parser.add_argument('--pretraineddirectory', type = str, default = '')
     parser.add_argument("--learning_rate", type = float, default = 5e-4, help = "set the learning rate.")
     parser.add_argument("--epoch", type = int, default = 50, help = "set the epoch.")
