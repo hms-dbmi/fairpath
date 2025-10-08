@@ -259,7 +259,7 @@ if __name__ == '__main__':
             outfile.write(json_object)
         
         ### torch device
-        if torch.cuda.is_available(): # 若想使用 cuda 且可以使用 cuda
+        if torch.cuda.is_available(): 
             device = 'cuda'
         else:
             device = 'cpu'
