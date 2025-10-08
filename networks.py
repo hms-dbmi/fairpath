@@ -95,7 +95,7 @@ class MILNet(nn.Module):
         return weight_sum
 
 class RepNet(nn.Module):
-    def __init__(self, featureLength = 256, MILLength = 128, RepLength = 128, projectTytpe = 'linear', pretrained = True, feature_normalized = True):
+    def __init__(self, featureLength = 256, MILLength = 128, RepLength = 256, projectTytpe = 'linear', pretrained = True, feature_normalized = True):
         '''
         Parameters:
             featureLength: Length of feature from resnet18
