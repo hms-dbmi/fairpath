@@ -302,7 +302,7 @@ def extract_feature(ListDataset, pklPatchesInformation, device):
                  
                     # probPredictions = np.append(probPredictions, predictions.cpu().numpy())
                     
-                    output_dir=args.model_save_directory+'/feature_new_test'+str(IdxOuterLoop)+'_'+str(IdxInnerLoop)
+                    output_dir=args.model_save_directory+'/feature_new'+str(IdxOuterLoop)+'_'+str(IdxInnerLoop)
                     os.makedirs(output_dir, exist_ok=True)
 
                     for i, folder_name in enumerate(folders):
