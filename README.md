@@ -3,12 +3,13 @@
 Shih-Yen Lin<sup>†</sup>, Pei-Chen Tsai<sup>†</sup>, Fang-Yi Su<sup>†</sup>, Chun-Yen Chen, Fuchen Li, Junhan Zhao, Yuk Yeung Ho, Tsung-Lu Michael Lee, Elizabeth Healey, Po-Jen Lin, Ting-Wan Kao, Dmytro Vremenko, Thomas Roetzer-Pejrimovsky, Lynette Sholl, Deborah Dillon, Nancy U. Lin, David Meredith, Keith L. Ligon, Ying-Chun Lo, Nipon Chaisuriya, David J. Cook, Adelheid Woehrer, Jeffrey Meyerhardt, Shuji Ogino, MacLean P. Nasrallah, Jeffrey A. Golden, Sabina Signoretti, Jung-Hsien Chiang, Kun-Hsing Yu
 
 
-You can find the resource from google drive : https://drive.google.com/drive/u/1/folders/12og_0dCEj6ZJTvQ3oqhFJSRJ-GcbjpuE
 
+## Introduction
+*AI-enhanced pathology evaluation systems hold significant promise for improving cancer diagnosis but frequently exhibit biases against underrepresented populations due to limited diversity in training data. Here we present the Fairness-aware Artificial Intelligence Review for Pathology (FAIR-Path), a novel framework that leverages contrastive learning and weakly supervised machine learning to mitigate bias in AI-based pathology evaluation. In a pan-cancer AI fairness analysis spanning 20 cancer types, we found significant performance disparities in 29.3% of diagnostic tasks across demographic groups defined by self-reported race, sex, and age. FAIR-Path effectively mitigated 88.5% of these disparities, with external validation showed 91.1% reduction in performance gaps across 15 independent cohorts. We found that variations in somatic mutation prevalence among populations contributed to these performance disparities. FAIR-Path represents a promising step toward addressing fairness challenges in AI-powered pathology diagnoses and provides a robust framework for mitigating bias in medical AI applications.*
 
 ![image](https://i.ibb.co/gL70h1Tp/2025-10-07-201353.jpg)
 
-
+You can find the resource from google drive : https://drive.google.com/drive/u/1/folders/12og_0dCEj6ZJTvQ3oqhFJSRJ-GcbjpuE
 
 ## Requirements
     * docker version: nvcr.io/nvidia/pytorch:22.03-py3
@@ -46,18 +47,25 @@ You can find the resource from google drive : https://drive.google.com/drive/u/1
 
 
 ## Usage
-* Stage 1
+* Stage 1: Representation Learning
+The first stage involves learning patch-level representations.
+    * `--datasetpath: Paths to the dataset files for each sensitive attribute and class combination.`
+    * `--patchesdirectory: Paths to directories containing image patches.`
+    * `--epoch: Number of epochs for training.`
+    * `--wandb: Log to WandB for experiment tracking.`
+    * `--learning_rate: Set the learning rate for training.`
+
     
 ```
 python mainRepresentationLearningNonnorm.py 
-    --datasetpath 'sensitive_attibute0 Class0.pkl' \
-	          'sensitive_attibute0 Class1.pkl' \
-	          'sensitive_attibute1 Class0.pkl' \
-	          'sensitive_attibute1 Class1.pkl' \
-    --patchesdirectory 'path to img folder (sensitive_attibute0 Class0)' \
-			'path to img folder (sensitive_attibute0 Class1)' \
-			'path to img folder (sensitive_attibute1 Class0)' \
-			'path to img folder (sensitive_attibute1 Class1)' \
+    --datasetpath 'sensitive_attribute0 Class0.pkl' \
+	          'sensitive_attribute0 Class1.pkl' \
+	          'sensitive_attribute1 Class0.pkl' \
+	          'sensitive_attribute1 Class1.pkl' \
+    --patchesdirectory 'path to img folder (sensitive_attribute0 Class0)' \
+			'path to img folder (sensitive_attribute0 Class1)' \
+			'path to img folder (sensitive_attribute1 Class0)' \
+			'path to img folder (sensitive_attribute1 Class1)' \
 	--patchesinformation 'path img_information.pkl class0' \
                             'path img_information.pkl class1'
 	--model_save_directory 'save weight path' \
@@ -66,17 +74,19 @@ python mainRepresentationLearningNonnorm.py
     --pickType k-step --multiply 24 --specificInnerloop 2 
     --learning_rate 5e-3
 ```
+
+    
 * Stage 2
 ```
 python mainFinetuneClassificationTask.py 
-    --datasetpath 'sensitive_attibute0 Class0.pkl' \
-	          'sensitive_attibute0 Class1.pkl' \
-	          'sensitive_attibute1 Class0.pkl' \
-	          'sensitive_attibute1 Class1.pkl' \
-    --patchesdirectory 'path to img folder (sensitive_attibute0 Class0)' \
-			'path to img folder (sensitive_attibute0 Class1)' \
-			'path to img folder (sensitive_attibute1 Class0)' \
-			'path to img folder (sensitive_attibute1 Class1)' \
+    --datasetpath 'sensitive_attribute0 Class0.pkl' \
+	          'sensitive_attribute0 Class1.pkl' \
+	          'sensitive_attribute1 Class0.pkl' \
+	          'sensitive_attribute1 Class1.pkl' \
+    --patchesdirectory 'path to img folder (sensitive_attribute0 Class0)' \
+			'path to img folder (sensitive_attribute0 Class1)' \
+			'path to img folder (sensitive_attribute1 Class0)' \
+			'path to img folder (sensitive_attribute1 Class1)' \
 	--patchesinformation 'path img_information.pkl' \
                             'path img_information.pkl'
 	--model_save_directory 'save weight path' \
@@ -86,7 +96,7 @@ python mainFinetuneClassificationTask.py
     --pickType k-step --specificInnerloop 1 --multiply 3 
     --learning_rate 5e-5
    
-``` 
+```  
 
 
 ## Tutorial
