@@ -142,5 +142,5 @@ python mainFinetuneClassificationTask.py
 * **Stage 3 (Fine-Tuning using corrected feature)**
 
 ```
-python mainFinetune_SY.py --folder [FOLDER_FOR_STORING]
+python mainFinetuneClassificationTask.py --folder [FOLDER_FOR_STORING_FEATURES]
 ```
