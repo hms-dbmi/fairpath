@@ -57,7 +57,7 @@ The first stage involves learning patch-level representations.
 
     
 ```
-python mainRepresentationLearningNonnorm.py 
+python representation_learning.py 
     --datasetpath 'sensitive_attribute0 Class0.pkl' \
 	          'sensitive_attribute0 Class1.pkl' \
 	          'sensitive_attribute1 Class0.pkl' \
@@ -76,7 +76,9 @@ python mainRepresentationLearningNonnorm.py
 ```
 
     
-* Stage 2
+* Stage 2: Fine-tuning
+After the first stage, use the saved model weights to fine-tune for the classification task
+    * `--pretraineddirectory: Path to the pretrained model weights from Stage 1.`
 ```
 python mainFinetuneClassificationTask.py 
     --datasetpath 'sensitive_attribute0 Class0.pkl' \
@@ -104,7 +106,7 @@ python mainFinetuneClassificationTask.py
 * Stage 1
     
 ```
-python mainRepresentationLearningNonnorm.py 
+python representation_learning.py 
     --datasetpath 'female 33_CHOL 40 Frozen tumor0.pkl' \
 	          'female 33_CHOL 40 Frozen tumor1.pkl' \
 	          'male 33_CHOL 40 Frozen tumor0.pkl' \
