@@ -47,7 +47,7 @@ You can find the resource from google drive : https://drive.google.com/drive/u/1
 
 
 ## Usage
-* Stage 1: Representation Learning
+* Stage 1: Representation Learning (Pre-training and feature extraction)
 The first stage involves learning patch-level representations.
     * `--datasetpath: Paths to the dataset files for each sensitive attribute and class combination.`
     * `--patchesdirectory: Paths to directories containing image patches.`
@@ -77,26 +77,11 @@ python representation_learning.py
 
     
 * Stage 2: Fine-tuning
+  (Fine-Tuning using corrected feature)
 After the first stage, use the saved model weights to fine-tune for the classification task
     * `--pretraineddirectory: Path to the pretrained model weights from Stage 1.`
 ```
-python mainFinetuneClassificationTask.py 
-    --datasetpath 'sensitive_attribute0 Class0.pkl' \
-	          'sensitive_attribute0 Class1.pkl' \
-	          'sensitive_attribute1 Class0.pkl' \
-	          'sensitive_attribute1 Class1.pkl' \
-    --patchesdirectory 'path to img folder (sensitive_attribute0 Class0)' \
-			'path to img folder (sensitive_attribute0 Class1)' \
-			'path to img folder (sensitive_attribute1 Class0)' \
-			'path to img folder (sensitive_attribute1 Class1)' \
-	--patchesinformation 'path img_information.pkl' \
-                            'path img_information.pkl'
-	--model_save_directory 'save weight path' \
-    --pretraineddirectory 'path to weight from stage 1' \
-    --epoch 50 --batch_size 4 
-    --wandb --wandb_projectname project name 
-    --pickType k-step --specificInnerloop 1 --multiply 3 
-    --learning_rate 5e-5
+python mainFinetuneClassificationTask.py --folder [FOLDER_FOR_STORING_FEATURES]
    
 ```  
 
@@ -125,22 +110,6 @@ python representation_learning.py
 ```
 * Stage 2
 ```
-python mainFinetuneClassificationTask.py 
-    --datasetpath 'female 33_CHOL 40 Frozen tumor0.pkl' \
-	          'female 33_CHOL 40 Frozen tumor1.pkl' \
-	          'male 33_CHOL 40 Frozen tumor0.pkl' \
-	          'male 33_CHOL 40 Frozen tumor1.pkl' \
-    --patchesdirectory '33_CHOL' \
-			'33_CHOL' \
-			'33_CHOL' \
-			'33_CHOL' \
-	--patchesinformation 'img_information_20x.pkl' \
-                            'img_information_20x.pkl'
-	--model_save_directory 'save weight path' \
-    --pretraineddirectory 'path to weight from stage 1' \
-    --epoch 50 --batch_size 4 
-    --wandb --wandb_projectname project name 
-    --pickType k-step --specificInnerloop 1 --multiply 3 
-    --learning_rate 5e-5
+python mainFinetuneClassificationTask.py --folder [FOLDER_FOR_STORING_FEATURES]
    
 ``` 
