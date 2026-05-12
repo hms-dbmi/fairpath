@@ -131,11 +131,14 @@ python mainFinetuneClassificationTask.py --folder path/to/features
 If you find FAIR-Path useful in your research, please cite:
 
 ```
-@article{lin2025fairpath,
-  title={Contrastive Learning Enhances Fairness in Pathology Artificial Intelligence Systems},
-  author={Lin, Shih-Yen and Tsai, Pei-Chen and Su, Fang-Yi and et al.},
-  journal={In preparation},
-  year={2025}
+@article{lin2025contrastive,
+  title={Contrastive learning enhances fairness in pathology artificial intelligence systems},
+  author={Lin, Shih-Yen and Tsai, Pei-Chen and Su, Fang-Yi and Chen, Chun-Yen and Li, Fuchen and Zhao, Junhan and Ho, Yuk Yeung and Lee, Tsung-Lu Michael and Healey, Elizabeth and Lin, Po-Jen and others},
+  journal={Cell Reports Medicine},
+  volume={6},
+  number={12},
+  year={2025},
+  publisher={Elsevier}
 }
 ```
 
